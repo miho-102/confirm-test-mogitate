@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    background-color: #f5f5f5;
+    font-family: sans-serif;
+}
+
+.header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+}
+
+.header__inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    padding: 0 20px;
+
+    display: flex;
+    align-items: center;
+}
+
+.header__logo {
+    color: #f4b400;
+
+    font-size: 32px;
+    font-style: italic;
+    font-weight: bold;
+
+    text-decoration: none;
+    letter-spacing: 1px;
+}
