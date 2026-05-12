@@ -23,4 +23,9 @@ class Product extends Model
             $query->orderBy('price', 'desc');
         }
     }
+
+    public function seasons()
+    {
+    return $this->belongsToMany(Season::class);
+    }
 }
