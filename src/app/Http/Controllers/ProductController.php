@@ -22,4 +22,9 @@ class ProductController extends Controller
         $product = Product::findOrFail($productId);
         return view('show', compact('product'));
     }
+
+    public function create()
+    {
+        return view('register');
+    }
 }

@@ -9,10 +9,14 @@
 <div class="product-list">
     <div class="product-list__sidebar">
         <h1 class="product-list__title">
-            商品一覧
+            @if(request('search'))
+                “{{ request('search') }}”の商品一覧
+            @else
+                商品一覧
+            @endif
         </h1>
-        <form action="/products" method="GET">
-            <input type="text" name="search" class="search-form__input" placeholder="商品名で検索">
+        <form action="/products" method="GET" class="search-form">
+            <input type="text" name="search" class="search-form__input" placeholder="商品名で検索" value="{{ request('search') }}" >
             <button class="search-form__button">
                 検索
             </button>
@@ -49,7 +53,7 @@
     </div>
     <div class="product-list__content">
         <div class="product-list__header">
-            <a href="#" class="add-button">
+            <a href="/products/register" class="add-button">
                 + 商品を追加
             </a>
         </div>

@@ -1,0 +1,150 @@
+.register {
+    background: #f8f8f8;
+    min-height: calc(100vh - 60px);
+    padding: 70px 0;
+}
+
+.register__inner {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.register__title {
+    margin-bottom: 32px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+}
+
+.register-form__group {
+    margin-bottom: 24px;
+}
+
+.register-form__label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.register-form__required {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 6px;
+    background: #ff0000;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.register-form__note {
+    margin-left: 8px;
+    color: #ff0000;
+    font-size: 12px;
+}
+
+.register-form__input,
+.register-form__textarea {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+    font-size: 14px;
+}
+
+.register-form__input {
+    height: 43px;
+    padding: 0 12px;
+}
+
+.register-form__textarea {
+    height: 160px;
+    padding: 12px;
+    resize: none;
+}
+
+.register-form__input::placeholder,
+.register-form__textarea::placeholder {
+    color: #cfcfcf;
+}
+
+.register-form__radio-group {
+    display: flex;
+    gap: 44px;
+    align-items: center;
+}
+
+.register-form__radio-group label {
+    position: relative;
+    padding-left: 26px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+}
+
+.register-form__radio-group input[type="checkbox"] {
+    display: none;
+}
+
+.register-form__radio-group label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 16px;
+    height: 16px;
+    border: 1px solid #999;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.register-form__radio-group input[type="checkbox"]:checked+span::before  {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #333;
+    color: #fff;
+
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+}
+
+.register-form__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 32px;
+}
+
+.register-form__back,
+.register-form__submit {
+    width: 200px;
+    padding: 13px 0;
+    border-radius: 4px;
+    border: none;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.register-form__back {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.register-form__submit {
+    background: #f5c800;
+    color: #333;
+}
