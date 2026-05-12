@@ -11,8 +11,15 @@ class ProductController extends Controller
     {
         $products = Product::search($request->search)
         ->sortPrice($request->sort)
-        ->get();
+        ->paginate(6)
+        ->appends($request->query());
 
         return view('index', compact('products'));
+    }
+
+    public function show($productId)
+    {
+        $product = Product::findOrFail($productId);
+        return view('show', compact('product'));
     }
 }

@@ -55,7 +55,8 @@
         </div>
             <div class="product-card__wrap">
                 @foreach ($products as $product)
-                <div class="product-card">
+                <a href="/products/detail/{{ $product->id }}"
+                class="product-card">
                     <img
                     src="{{ asset($product['image']) }}"
                     alt="{{ $product['name'] }}"
@@ -69,9 +70,11 @@
                             ¥{{ number_format($product['price']) }}
                         </p>
                     </div>
+                </a>
+                @endforeach
+                <div class="pagination">
+                    {{ $products->onEachSide(1)->links() }}
                 </div>
-
-            @endforeach
         </div>
 
     </div>

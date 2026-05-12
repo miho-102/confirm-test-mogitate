@@ -103,19 +103,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     width: 18px;
     height: 18px;
-
     border: 1px solid #f5c800;
     border-radius: 50%;
-
     color: #f5c800;
     text-decoration: none;
-
     font-size: 12px;
     font-weight: bold;
-
     line-height: 1;
 }
 
@@ -158,12 +153,11 @@
 
 .product-card {
     background-color: #ffffff;
-
     border-radius: 10px;
-
     overflow: hidden;
-
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    text-decoration: none;
+    color: inherit;
 }
 
 .product-card__image {
@@ -197,4 +191,71 @@
     font-size: 16px;
 
     color: #666666;
+}
+
+.pagination {
+    grid-column: 1 / -1;
+    margin-top: 30px;
+
+    display: flex;
+    justify-content: center;
+}
+
+/* Showing ○○ を非表示 */
+.pagination nav>div:first-child,
+.pagination nav p {
+    display: none;
+}
+
+/* ページネーション本体 */
+.pagination nav>div:last-child {
+    display: flex;
+    justify-content: center;
+}
+
+/* 横並びに変更 */
+.pagination nav>div:last-child>div:last-child>span,
+.pagination nav>div:last-child>div:last-child>a {
+    display: inline-flex;
+}
+
+/* ボタン全体 */
+.pagination nav a,
+.pagination nav span[aria-current="page"] {
+    width: 24px;
+    height: 24px;
+
+    margin: 0 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background-color: #ffffff;
+    color: #666666;
+
+    font-size: 13px;
+    text-decoration: none;
+    line-height: 1;
+}
+
+/* 現在ページ */
+.pagination nav span[aria-current="page"] {
+    background-color: #f5c800;
+    color: #ffffff;
+}
+
+/* 現在ページ内側 */
+.pagination nav span[aria-current="page"] span {
+    margin: 0;
+    background: transparent;
+    color: inherit;
+}
+
+/* 矢印 */
+.pagination svg {
+    width: 10px;
+    height: 10px;
 }
