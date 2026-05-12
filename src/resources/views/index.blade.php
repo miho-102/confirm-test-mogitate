@@ -12,7 +12,7 @@
             商品一覧
         </h1>
         <form action="/products" method="GET">
-            <input type="text" name="keyword" class="search-form__input" placeholder="商品名で検索">
+            <input type="text" name="search" class="search-form__input" placeholder="商品名で検索">
             <button class="search-form__button">
                 検索
             </button>
@@ -27,7 +27,24 @@
                     <option value="desc">高い順に表示</option>
                 </select>
             </div>
-
+            @if (request('sort'))
+            <div class="sort-tag">
+                @if (request('sort') === 'asc')
+                <span>
+                    低い順に表示
+                </span>
+                @endif
+                @if (request('sort') === 'desc')
+                <span>
+                    高い順に表示
+                </span>
+                @endif
+                <a href="/products?search={{ request('search') }}"
+                class="sort-tag__reset">
+                ×
+                </a>
+            </div>
+        @endif
         </form>
     </div>
     <div class="product-list__content">
