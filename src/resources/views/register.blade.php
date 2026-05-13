@@ -17,6 +17,9 @@
                     商品名 <span class="register-form__required">必須</span>
                 </label>
                 <input class="register-form__input" type="text" name="name" placeholder="商品名を入力">
+                @error('name')
+                <p class="register-form__error">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="register-form__group">
@@ -24,6 +27,9 @@
                     値段 <span class="register-form__required">必須</span>
                 </label>
                 <input class="register-form__input" type="text" name="price" placeholder="値段を入力">
+                @error('price')
+                <p class="register-form__error">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="register-form__group">
@@ -32,6 +38,9 @@
                 </label>
                 <img id="preview" src="" alt="画像プレビュー" style="width: 200px; display: none; margin-top: 10px;">
                 <input class="register-form__file" type="file" name="image" id="image-input" accept="image/*">
+                @error('image')
+                <p class="register-form__error">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="register-form__group">
@@ -49,6 +58,9 @@
                     </label>
                     @endforeach
                 </div>
+                @error('seasons')
+                <p class="register-form__error">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="register-form__group">
@@ -56,6 +68,9 @@
                     商品説明 <span class="register-form__required">必須</span>
                 </label>
                 <textarea class="register-form__textarea" name="description" placeholder="商品の説明を入力"></textarea>
+                @error('description')
+                <p class="register-form__error">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="register-form__buttons">

@@ -19,7 +19,12 @@ use Illuminate\Support\Str;
         {{ $product->name }}
     </p>
 
-    <form class="product-form">
+    <form
+    class="product-form"
+    action="/products/{{ $product->id }}/update"
+    method="POST"
+    enctype="multipart/form-data">
+    @csrf
 
         <div class="product-form__top">
 
@@ -48,7 +53,8 @@ use Illuminate\Support\Str;
 
                     <input
                         type="text"
-                        value="{{ $product->name }}"
+                        name="name"
+                        value="{{ old('name', $product->name) }}"
                         class="form-group__input">
                 </div>
 
@@ -59,7 +65,8 @@ use Illuminate\Support\Str;
 
                     <input
                         type="text"
-                        value="{{ $product->price }}"
+                        name="price"
+                        value="{{ old('price', $product->price) }}"
                         class="form-group__input">
                 </div>
 
@@ -95,15 +102,17 @@ use Illuminate\Support\Str;
                 商品説明
             </label>
 
-            <textarea class="form-group__textarea">{{ $product->description }}</textarea>
+            <textarea
+            name="description"
+            class="form-group__textarea">{{ old('description', $product->description) }}</textarea>
 
         </div>
 
         <div class="product-form__button-area">
 
-            <button type="button" class="back-button">
+            <a href="/products" class="back-button">
                 戻る
-            </button>
+            </a>
 
             <button type="submit" class="save-button">
                 変更を保存

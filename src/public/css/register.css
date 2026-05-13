@@ -160,3 +160,9 @@
     background: #f5c800;
     color: #333;
 }
+
+.register-form__error {
+    margin-top: 6px;
+    color: #ff4b4b;
+    font-size: 12px;
+}
