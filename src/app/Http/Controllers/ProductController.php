@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Season;
@@ -20,9 +21,10 @@ class ProductController extends Controller
 
     public function show($productId)
     {
-        $product = Product::findOrFail($productId);
-        return view('show', compact('product'));
-    }
+        $product = Product::with('seasons')->findOrFail($productId);
+        $seasons = Season::all();
+        return view('show', compact('product', 'seasons'));
+        }
 
     public function create()
     {
@@ -33,15 +35,14 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-    $product = Product::create([
-        'name' => $request->name,
-        'price' => $request->price,
-        'description' => $request->description,
-        'image' => $request->image,
+        $imagePath = $request->file('image')->store('products', 'public');
+        $product = Product::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'description' => $request->description,
+            'image' => $imagePath,
     ]);
-
-    $product->seasons()->attach($request->seasons);
-
-    return redirect('/products');
+        $product->seasons()->attach($request->seasons);
+        return redirect('/products');
     }
 }

@@ -5,6 +5,9 @@
 @endsection
 
 @section('content')
+@php
+use Illuminate\Support\Str;
+@endphp
 
 <div class="product-list">
     <div class="product-list__sidebar">
@@ -61,11 +64,17 @@
                 @foreach ($products as $product)
                 <a href="/products/detail/{{ $product->id }}"
                 class="product-card">
+                @if (Str::startsWith($product->image, 'products/'))
                     <img
-                    src="{{ asset($product['image']) }}"
+                    src="{{ asset('storage/' . $product->image) }}"
                     alt="{{ $product['name'] }}"
                     class="product-card__image">
-
+                @else
+                    <img
+                    src="{{ asset($product->image) }}"
+                    alt="{{ $product->name }}"
+                    class="product-card__image">
+                    @endif
                     <div class="product-card__content">
                         <p class="product-card__name">
                             {{ $product['name'] }}

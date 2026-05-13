@@ -9,7 +9,7 @@
     <div class="register__inner">
         <h1 class="register__title">商品登録</h1>
 
-        <form class="register-form" action="" method="post" enctype="multipart/form-data">
+        <form class="register-form" action="/products/register" method="post" enctype="multipart/form-data">
             @csrf
 
             <div class="register-form__group">
@@ -30,7 +30,8 @@
                 <label class="register-form__label">
                     商品画像 <span class="register-form__required">必須</span>
                 </label>
-                <input class="register-form__file" type="file" name="image">
+                <img id="preview" src="" alt="画像プレビュー" style="width: 200px; display: none; margin-top: 10px;">
+                <input class="register-form__file" type="file" name="image" id="image-input" accept="image/*">
             </div>
 
             <div class="register-form__group">
@@ -41,10 +42,12 @@
                 </label>
 
                 <div class="register-form__radio-group">
-                    <label><input type="checkbox" name="season[]" value="春"><span>春</span></label>
-                    <label><input type="checkbox" name="season[]" value="夏"><span>夏</span></label>
-                    <label><input type="checkbox" name="season[]" value="秋"><span>秋</span></label>
-                    <label><input type="checkbox" name="season[]" value="冬"><span>冬</span></label>
+                    @foreach ($seasons as $season)
+                    <label>
+                        <input type="checkbox" name="seasons[]" value="{{ $season->id }}">
+                        <span>{{ $season->name }}</span>
+                    </label>
+                    @endforeach
                 </div>
             </div>
 
@@ -60,6 +63,22 @@
                 <button class="register-form__submit" type="submit">登録</button>
             </div>
         </form>
+
+        <script>
+        const imageInput = document.getElementById('image-input');
+        const preview = document.getElementById('preview');
+        imageInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+        </script>
     </div>
 </div>
 @endsection

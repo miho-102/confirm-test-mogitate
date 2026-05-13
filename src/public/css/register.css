@@ -20,6 +20,18 @@
     margin-bottom: 24px;
 }
 
+.register-form__preview {
+    display: none;
+    width: 300px;
+    height: 220px;
+    object-fit: cover;
+    margin-bottom: 8px;
+}
+
+.register-form__file {
+    display: block;
+}
+
 .register-form__label {
     display: block;
     margin-bottom: 10px;

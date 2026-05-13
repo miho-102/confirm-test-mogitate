@@ -5,6 +5,9 @@
 @endsection
 
 @section('content')
+@php
+use Illuminate\Support\Str;
+@endphp
 
 <div class="product-detail">
 
@@ -21,13 +24,18 @@
         <div class="product-form__top">
 
             <div class="product-form__image-area">
-
+                @if (Str::startsWith($product->image, 'products/'))
                 <img
+                    src="{{ asset('storage/' . $product->image) }}"
+                    alt="{{ $product->name }}"
+                    class="product-form__image">
+                    @else
+                    <img
                     src="{{ asset($product->image) }}"
                     alt="{{ $product->name }}"
                     class="product-form__image">
-
-                <input type="file">
+                    @endif
+                <input type="file" name="image">
 
             </div>
 
@@ -62,26 +70,16 @@
                     </label>
 
                     <div class="season-group">
-
-                        <label>
-                            <input type="radio" name="season">
-                            春
+                        @foreach ($seasons as $season)
+                        <label class="season-group__item">
+                            <input
+                            type="checkbox"
+                            name="seasons[]"
+                            value="{{ $season->id }}"
+                            {{ $product->seasons->contains('id', $season->id) ? 'checked' : '' }} >
+                            {{ $season->name }}
                         </label>
-
-                        <label>
-                            <input type="radio" name="season">
-                            夏
-                        </label>
-
-                        <label>
-                            <input type="radio" name="season">
-                            秋
-                        </label>
-
-                        <label>
-                            <input type="radio" name="season">
-                            冬
-                        </label>
+                        @endforeach
 
                     </div>
 
