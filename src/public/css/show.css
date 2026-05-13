@@ -164,3 +164,18 @@
     font-size: 24px;
     cursor: pointer;
 }
+.form-group__error {
+    margin-top: 6px;
+    color: #ff4b4b;
+    font-size: 12px;
+}
+
+.delete-form {
+    margin: 0;
+}
+.product-form__button-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}

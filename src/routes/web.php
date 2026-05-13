@@ -19,3 +19,4 @@ Route::get('/products/detail/{productId}', [ProductController::class, 'show']);
 Route::post('/products/{productId}/update', [ProductController::class, 'update']);
 Route::get('/products/register', [ProductController::class, 'create']);
 Route::post('/products/register', [ProductController::class, 'store']);
+Route::post('/products/{productId}/delete', [ProductController::class, 'destroy']);

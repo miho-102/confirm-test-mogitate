@@ -20,6 +20,7 @@ use Illuminate\Support\Str;
     </p>
 
     <form
+    id="update-form"
     class="product-form"
     action="/products/{{ $product->id }}/update"
     method="POST"
@@ -40,10 +41,12 @@ use Illuminate\Support\Str;
                     alt="{{ $product->name }}"
                     class="product-form__image">
                     @endif
-                <input type="file" name="image">
+                    <input type="file" name="image">
+                    @error('image')
+                    <p class="form-group__error">{{ $message }}</p>
+                    @enderror
 
             </div>
-
             <div class="product-form__content">
 
                 <div class="form-group">
@@ -56,6 +59,9 @@ use Illuminate\Support\Str;
                         name="name"
                         value="{{ old('name', $product->name) }}"
                         class="form-group__input">
+                        @error('name')
+                        <p class="form-group__error">{{ $message }}</p>
+                        @enderror
                 </div>
 
                 <div class="form-group">
@@ -68,27 +74,32 @@ use Illuminate\Support\Str;
                         name="price"
                         value="{{ old('price', $product->price) }}"
                         class="form-group__input">
+                        @error('price')
+                        <p class="form-group__error">{{ $message }}</p>
+                        @enderror
                 </div>
-
                 <div class="form-group">
 
                     <label class="form-group__label">
                         季節
                     </label>
-
-                    <div class="season-group">
-                        @foreach ($seasons as $season)
-                        <label class="season-group__item">
-                            <input
-                            type="checkbox"
-                            name="seasons[]"
-                            value="{{ $season->id }}"
-                            {{ $product->seasons->contains('id', $season->id) ? 'checked' : '' }} >
-                            {{ $season->name }}
+                <div class="season-group">
+                    @foreach ($seasons as $season)
+                    <label class="season-group__item">
+                        <input
+                        type="checkbox"
+                        name="seasons[]"
+                        value="{{ $season->id }}"
+                        {{ old('seasons') !== null
+                        ? (in_array($season->id, old('seasons')) ? 'checked' : '')
+                        : ($errors->has('seasons') ? '' : ($product->seasons->contains('id', $season->id) ? 'checked' : '')) }}>
+                        {{ $season->name }}
                         </label>
                         @endforeach
-
-                    </div>
+                </div>
+                    @error('seasons')
+                    <p class="form-group__error">{{ $message }}</p>
+                    @enderror
 
                 </div>
 
@@ -104,28 +115,28 @@ use Illuminate\Support\Str;
 
             <textarea
             name="description"
-            class="form-group__textarea">{{ old('description', $product->description) }}</textarea>
+            class="form-group__textarea">{{ old('description', $product->description) }}
+            </textarea>
+            @error('description')
+            <p class="form-group__error">{{ $message }}</p>
+            @enderror
 
         </div>
-
+    </form>
         <div class="product-form__button-area">
-
             <a href="/products" class="back-button">
                 戻る
             </a>
-
-            <button type="submit" class="save-button">
+            <button type="submit" form="update-form" class="save-button">
                 変更を保存
             </button>
 
-            <button type="button" class="delete-button">
-                🗑
-            </button>
-
-        </div>
-
+    <form action="/products/{{ $product->id }}/delete" method="POST" class="delete-form">
+        @csrf
+        <button type="submit" class="delete-button">
+            🗑
+        </button>
     </form>
-
 </div>
 
 @endsection

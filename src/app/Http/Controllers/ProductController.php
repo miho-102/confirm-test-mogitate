@@ -117,4 +117,11 @@ class ProductController extends Controller
     $product->seasons()->sync($request->seasons);
     return redirect('/products');
     }
+
+    public function destroy($productId)
+    {
+        $product = Product::findOrFail($productId);
+        $product->delete();
+        return redirect('/products');
+    }
 }
